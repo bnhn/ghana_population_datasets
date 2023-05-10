@@ -43,11 +43,11 @@ def get_population_data(url):
     region_name = soup.find("h1", class_="pageTitle").span.text
     return {"region":region_name,"population":div}
 
-population_data = {}
+population_data = []
 for link in region_links:
     url = base_url+link["href"]
     data = get_population_data(url)
-    population_data[data["region"]] = data['population']
+    population_data.append(data)
 
 # Save to file
 with open("population2021.json","w") as file:
